@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Attendance Access</title>
+</head>
+<body>
+
+<h2>Checking network access...</h2>
+
+<script>
+fetch("https://api.ipify.org?format=json")
+.then(response => response.json())
+.then(data => {
+    const allowedIP = "103.54.27.45";  // IP as a string
+
+    if(data.ip === allowedIP){  
+        window.location.href = "https://docs.google.com/forms/d/e/1FAIpQLSdweH9IKlS7FNSzfgioZZ5GaStW6dI06STZ-v4XGRMAF8eD2A/viewform?usp=publish-editor";
+    }
+    else{
+        document.body.innerHTML =
+        "<h2>Access denied. Please connect to office Wi-Fi.</h2>";
+    }
+})
+.catch(error => {
+    document.body.innerHTML =
+    "<h2>Error fetching IP. Please try again later.</h2>";
+    console.error(error);
+});
+</script>
+
+
+</body>
+</html>
